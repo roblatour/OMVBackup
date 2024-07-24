@@ -15,13 +15,22 @@ You are welcome to give them a try.
   1. createBackupWorker.sh (a shell to do the actual backup)
   2. createBackup.sh (a shell to call createBackupWorker.sh using a sudo command - which allows the user to enter their password to run sudo commands up front, rather than later in the backup process)  
 
-# Behaivor
+# Behavior
 The backup process: 
-- create a compressed .img file which may be flashed to another like (or larger) USB using a flashing tool such as Rasperry Pi Imager
-- allows uninterupted ongoing access to the OMV drives 
-- takes the OMV web interface off line only for the time needed to do the actual backup (about <6 minutes on my system - a Raspberry Pi running Armbian)
+- creates a compressed .img file which may be flashed to another like (or larger) USB using a flashing tool such as Rasperry Pi Imager
+- allows uninterupted ongoing access to the OMV drives
+- puts the OS drive in read only mode for the time needed to do the actual backup
+- takes the OMV web interface off line only for the time needed to do the actual backup
 - continues to run in the background to compress the backup to a zip file
 - optionally deletes the backup image file after the compressed backup file has been created
+
+# Testing
+These shells have been tested on my Raspberry Pi 5, running Armbian and OMV
+Backup directory is an SSD drive
+Run times on my system (shown below) 
+- approximately 16 minutes to create the uncompressed backup
+- approximately another 15 minutes to compress the uncompressed backup
+  
 
 # Pre-requests:
 1. OMV should be installed and configured on your machine, this to include at least one OMV drive to which the backup may be saved
