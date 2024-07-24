@@ -1,7 +1,7 @@
 # Draft WIP
 
 # OMVBackup
-Linux shell to backup Open Media Vault (OMV)
+a set of Linux shells to backup an OS drive with Open Media Vault (OMV) installed on it
 
 # License
 MIT
@@ -18,28 +18,36 @@ You are welcome to give them a try.
 # Behaivor
 The backup process: 
 - create a compressed .img file which may be flashed to another like (or larger) USB using a flashing tool such as Rasperry Pi Imager
-- takes the Open Media Vault web interface off line for the time needed to do the actual backup (about 6 minutes on my system - a Raspberry Pi running Armbian)
+- allows uninterupted ongoing access to the OMV drives 
+- takes the OMV web interface off line only for the time needed to do the actual backup (about <6 minutes on my system - a Raspberry Pi running Armbian)
 - continues to run in the background to compress the backup to a zip file
-- optionally deletes the backup image file after the zip file has been created
+- optionally deletes the backup image file after the compressed backup file has been created
 
 # Pre-requests:
 1. OMV should be installed and configured on your machine, this to include at least one OMV drive to which the backup may be saved
+
+2. You will need remote (SSH) access to your system running OMV (this not through the OMV web interface)
   
-2. create a directory on one of the attached OMV drives as a target for the backup
-   
-3. if you don't already have zip installed, then it will need to be installed:
-   sudo apt update
-   sudo apt install zip
+3. create a directory on one of the attached OMV drives as a target for the backup
+
+4. you will need the zip program installed (see setup below) 
 
 # Setup
-1. create a directory in which the shell files will be stored for example
+
+1. SSH into the OMV machine
+
+2. if you don't already have zip installed, then it will need to be installed:
+   sudo apt update
+   sudo apt install zip
+   
+3. create a directory in which the shell files will be stored for example:
    mkdir backupRoutine
 
-2. put the two shells found in this repository into that directory
+4. put the two shells found in this repository into that directory
    cd backupRoutines
    xxx
       
-3. edit the file createBackupWorker.sh
+5. edit the file createBackupWorker.sh
 
    change the BACKUP_DIRECTORY path as outlined in the comments
      
@@ -50,8 +58,7 @@ The backup process:
    note: the file may be edited with the following command:
      sudo nano createBackupWorker.sh
      and press Ctrl-X  when done
-
-4. set your system permissions to allow the scripts to be executed
+6. set your system permissions to allow the scripts to be executed
    
    sudo +x createBackup.sh
    sudo +x createBackupWorker.sh
@@ -63,12 +70,19 @@ The backup process:
    ./createBackup.sh
    (enter your password if prompted)
 
+   example run:
+   
 # When the backup is finished
 
 If OMV goes down and you need to restore your OS + OMV drive then you will need easy access to the compressed backup file.
-Accordingly, it is best to copy the backup to another easy to access location not on your OMV drives
+Accordingly, it is best to copy the compressed backup file to another easy to access location not on your OMV drives.
 
-# Retore
+# Retoring the backup
+
+Use a tool such as Raspberry Pi Imager to flash the image to another drive
+Of note, with Raspberry Pi Imager the compressed image file does not need to be uncompressed first
+Raspberry Pi Imagerer - 
+
    
 
 
