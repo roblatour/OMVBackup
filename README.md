@@ -34,9 +34,9 @@ Run times on my system:
 - approximately another 15 minutes to compress the uncompressed backup
   
 CPU usage:
-- when backup is not running the Raspberry Pi's 4 CPUs were normally between 0 and 15%, but at most times closer to 0%
-- when backup is running Raspberry Pi's 4 CPUs were normally between 0 and 15%, but at most times closer to 0% however somewhat higher than when the backup was not running
-- when the uncompressed backup file is being compressed three of the Raspberry Pi's CPU were the same as above, but one CPU was at 100%  
+- when backup is not running the Raspberry Pi 5's four CPUs were normally between 0 and 15%, but at most times closer to 0%
+- when backup is running Raspberry Pi 5's 4 CPUs were normally between 0 and 15%, but at most times closer to 0% however somewhat higher than when the backup was not running
+- when the uncompressed backup file is being compressed three of the Raspberry Pi 5's CPU were the same as above, but one CPU was at 100%  
 
 # Pre-requests:
 1. OMV should be installed and configured on your machine, this to include at least one OMV drive to which the backup may be saved
@@ -74,7 +74,7 @@ CPU usage:
      sudo nano createBackupWorker.sh
      and press Ctrl-X  when done
    
-7. set your system permissions to allow the scripts to be executed
+6. set your system permissions to allow the scripts to be executed
    
    sudo +x createBackup.sh
    sudo +x createBackupWorker.sh
@@ -88,6 +88,7 @@ CPU usage:
 
    example run:
    
+   
 # When the backup is finished
 
 If OMV goes down and you need to restore your OS + OMV drive then you will need easy access to the compressed backup file.
@@ -97,10 +98,5 @@ Accordingly, it is best to copy the compressed backup file to another easy to ac
 
 Use a tool such as Raspberry Pi Imager to flash the image to another drive
 Of note, with Raspberry Pi Imager the compressed image file does not need to be uncompressed first
-Raspberry Pi Imagerer - 
-
-   
-
-
-
+Raspberry Pi Imager - 
 
