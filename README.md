@@ -22,8 +22,8 @@ There are other solutions for this, but this works well for me so I thought I wo
 The backup process: 
 - creates a image file which may be flashed to another like (or larger) USB drive using a flashing tool such as Raspberry Pi Imager
 - optionally compresses the image file to save space
-- allows uninterrupted access to OMV drives through out the backup and compress processes
-- takes the OMV web interface offline and puts the OS drive in read only mode only for the time needed to do the backup
+- allows uninterrupted SSH access and access to OMV drives through out the backup and compress processes
+- takes the OMV web interface offline and puts the OS drive in read only mode for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
 
 ## Testing results
@@ -113,15 +113,47 @@ Flashing from the backup:
 	 the 120 above refers to 120 minutes, if needed you can change this value 
 	 this new timing will apply immediately and whenever you access your machine for whatever reason in the future
 
-## Running the backup
-1. Either directly or remotely access the OMV machine
+## Manually running the backup
 
-2. Change the current directory the directory in which the shell file is stored, for example:
-   cd ~/backupRoutine
+There are two ways to manually run the backup:
+
+1. via the command terminal
+
+   1.1 Either directly or remotely access the OMV machine
+
+   1.2 Change the current directory the directory in which the shell file is stored, for example:
+       cd ~/backupRoutine
    
-3. Run the createBackup shell
-   ./createBackup.sh
-   (enter your password if prompted)
+   1.3 Run the createBackup shell
+       ./createBackup.sh
+       (enter your password if prompted)
+	  
+2. via the OMV Web Interface
+   This requires that a scheduling task has been setup in OMV as noted below
+   and that you manually run it as described in point 11 below
+        
+## Automatically running the backup
+OMV's scheduling feature can be used to setup automatic periodic backups
+To do this:
+1.  Sign on to the OMV Web interface as admin
+2.  Go to System - Scheduled Tasks
+3.  Click on the + sign in the blue circle in the horizontal menu bar to add a new task
+5.  Check Enabled
+6.  Set your desired scheduling;
+    For example mine runs on the first day of each month at 1am
+	with Certain Day; Minute 0; Hour 1; Day of Month 1; Month \*; Day of week \*
+7.  Set the user to root
+8.  Set the command to:
+    (from the root user's perspective the path on your system where the createBackup.sh file is stored)\createBackup.sh
+	for example mine is set to:
+	/home/rob/backupRoutine/createBackup.sh
+9.  if in OMV, System - Notations are setup
+    you may optionally check 'Send command output via email' if you like
+10. Save and apply pending changes
+11. You can test this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar
+    However, if you do your OMV Web connection should almost immediately be lost.  
+	Ironically, this is an indication the shell is working as intended as the first thing it does, prior to making backup, is (as mentioned above) to take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup.
+	Having that said, (also as mentioned above) while the backup is running you will still have SSH and OMV file accesses.	
   
 ## When the backup is finished
 If you need to restore your OS + OMV drive then having easy access to the either the backup image file or the compressed backup image file will be important.
