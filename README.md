@@ -3,7 +3,7 @@
 copyright Rob Latour, 2024
 
 ## Project outline
-A Linux shell to backup an OS drive with Open Media Vault (OMV) installed on it
+Simplify backing up and restoring a bootable drive with Linux and Open Media Vault (OMV) installed on it
 
 ## License
 MIT
