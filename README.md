@@ -22,8 +22,7 @@ The backup process:
 - creates a image file which may be flashed to another like (or larger) USB drive using a flashing tool such as Raspberry Pi Imager
 - optionally compresses the image file to save space
 - allows uninterrupted access to OMV drives through out the backup and compress processes
-- takes the OMV web interface offline and puts the OS drive in read only mode only for the time needed to do the actual backup
-- continues to run in the background to compress the uncompressed backup image file without the need to have the OMV web interface offline or the OS drive in read only mode
+- takes the OMV web interface offline and puts the OS drive in read only mode only for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
 
 ## Testing results
