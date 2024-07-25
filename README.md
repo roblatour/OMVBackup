@@ -11,7 +11,6 @@ MIT
 ## Purpose
 I use this shell to backup my USB thumb drive with an Operating System (Armbian) and OMV installed and configured on it.
 It was created with a goal of making the OS + OMV backup and restore process as simple as possible.
-After reviewing the terms of the MIT license, you are welcome to use it too.
 
 ## Included in this repository:
   1. this README file
