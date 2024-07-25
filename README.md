@@ -3,15 +3,15 @@
 copyright Rob Latour, 2024
 
 ## Project outline
-A pair of Linux shells to backup an OS drive with Open Media Vault (OMV) installed on it
+Simplify backing up and restoring a bootable drive with Linux and Open Media Vault (OMV) installed on it
 
 ## License
 MIT
 
 ## Purpose
-I use these shells to backup my USB thumb drive with an Operating System (Armbian) and OMV installed and configured on it.
+I use the shells in this project to backup my USB thumb drive with a Linux Operating System (Armbian) and OMV installed on it.
 They were created with a goal of making the OS + OMV backup and restore process as simple as possible.
-After reviewing the terms of the MIT license, you are welcome to use them.
+After reviewing the terms of the MIT license, you are welcome to use them too!
 
 ## Included in this repository:
   1. this README file
