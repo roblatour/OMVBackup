@@ -3,7 +3,7 @@
 copyright Rob Latour, 2024
 
 ## Project outline
-Simplify backing up and restoring a bootable drive with Linux and Open Media Vault (OMV) installed on it
+Make it easier to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
 
 ## License
 MIT
