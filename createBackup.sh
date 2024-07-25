@@ -63,9 +63,6 @@ else
   exit 2
 fi
 
-#reset the sudo timeout counter
-sudo -v
-
 echo "Taking down online access to Open Media Vault ..."
 
 # Stop services
