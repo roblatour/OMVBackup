@@ -9,8 +9,9 @@ Make it easier to back up and restore a bootable drive with Linux and Open Media
 MIT
 
 ## Purpose
-I use this shell to backup my USB thumb drive with an Operating System (Armbian) and OMV installed and configured on it.
+I created this shell to backup my 32GB USB thumb drive on which OMV and Linux are running.
 It was created with a goal of making the OS + OMV backup and restore process as simple as possible.
+There are other solutions for this, but this works well for me so I thought I would share.
 
 ## Included in this repository:
   1. this README file
@@ -31,7 +32,7 @@ Backup directory is on an SSD drive
 
 Run times on my system:
 - approximately 16 minutes to create the backup file (uncompressed)
-- approximately another 35 minutes to compress the backup file
+- approximately another 36 minutes to compress the backup file
 
 CPU usage:
 - the backup process used only marginally more CPU than when the system was idle
@@ -41,58 +42,61 @@ File sizes:
 - uncompressed backup file: 28.6 GB
 - compressed backup file:    776 MB (>3% of the uncompressed backup file size)
 
+Flashing from the backup:
+- using Raspberry Pi Imager it took about an hour to flash from the backup. This timing was not impacted by the input image file being compressed or not. 
+
 ## Prerequisites and setup:
 1.  OMV should be installed and configured on your machine, this to include at least one OMV drive to which the backup may be saved
 
-2.  create a directory on one of the attached OMV drives as a target for the backup
+2.  Create a directory on one of the attached OMV drives as a target for the backup
     
-3.  Remote (SSH) access is required to the system running OMV (this not through the OMV web interface)
+3.  Either direct or remote (SSH) access is required to the system running OMV
     
-4.  SSH into the OMV machine (if you ssh in as root prefixing the commands below with sudo is not required)
+4.  Directly or remotely sign onto the OMV machine (if you sign in as root prefixing the commands below with sudo is not required)
     
-5.  if you don't already have 7zip installed, then it will need to be installed:
+5.  If you don't already have 7zip installed, then it will need to be installed:
     sudo apt update
     sudo apt install p7zip-full
     
-6.  if you don't already have wget installed, then it will need to be installed:
+6.  If you don't already have wget installed, then it will need to be installed:
     sudo apt update
     sudo apt-get install wget
     
-7.  create a directory in which the shell files will be stored for example:
+7.  Create a directory in which the shell file will be stored for example:
     mkdir backupRoutine
     
-8.  put the backup shell found in this repository into that directory
+8.  Add the backup shell found in this repository into the directory created in the step above
     cd backupRoutines
     wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh
        
-9.  edit the file createBackup.sh
-    
-    as outlined in the comments, change the values for:
-	   BACKUP_DRIVE_ID
-	   BACKUP_DRIVE_NAME
-	   BACKUP_DIRECTORY
+9.  Edit the file createBackup.sh    
+    as outlined in the comments:
+	
+	 change the values for:
+	  BACKUP_DRIVE_ID
+	  BACKUP_DRIVE_NAME
+	  BACKUP_DIRECTORY
 	   
-	as outlined in the comments, optionally change the values for:
-	   BACKUP_FILENAME
-	   COMPRESS_IMAGE
-       REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
-       COMPRESSION_LEVEL 
+	 optionally change the values for:
+	  BACKUP_FILENAME
+	  COMPRESS_IMAGE
+	  COMPRESSION_LEVEL 
+      REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED      
 
-    note: the file may be edited with the following command:
+    note: the file createBackup.sh may be edited with the following command:
       sudo nano createBackup.sh
       and when done press:
-           Ctrl-X
-  	       Y
-  	       Enter
+       Ctrl-X
+  	   Y
+  	   Enter
     
-10. set your system permissions to allow the shell to be executed
-   
+10. Set your system permissions to allow the shell to be executed   
     sudo +x createBackup.sh
 	
-11. depending on the size of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete
-    for more information, please see the 'Testing Results' above
-	accordingly, if you don't ssh in using root, then you will need to extend the sudo timeout limit to be long enough for the shell to run to completion
-	to do this, you may issue the command:
+11. Depending on the size of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
+    For more information, please see the 'Testing Results' above.
+	Accordingly, if you don't ssh in using root, then you will need to extend the sudo timeout limit to be long enough for the shell to run to completion.
+	To do this, you may issue the command:
 	
 	sudo visudo -f /etc/sudoers.d/timeout
 	
@@ -101,26 +105,28 @@ File sizes:
 	Defaults timestamp_timeout=120
 	
 	and when done press:
-        Ctrl-X
-  	    Y
-  	    Enter	  
+     Ctrl-X
+  	 Y
+  	 Enter	  
 		
-    Note: the 120 above refers to 120 minutes, if needed you can make this longer
+    Notes: 
+	 the 120 above refers to 120 minutes, if needed you can change this value 
+	 this new timing will apply immediately and whenever you access your machine for whatever reason in the future
 
 ## Running the backup
-1. SSH into the OMV machine (this not through the OMV web interface)
+1. Either directly or remotely access the OMV machine
 
-2. make your current directory the directory in which the shell file is stored, for example 
+2. Change the current directory the directory in which the shell file is stored, for example:
    cd ~/backupRoutine
    
-3. run the createBackup shell
+3. Run the createBackup shell
    ./createBackup.sh
    (enter your password if prompted)
   
 ## When the backup is finished
-If you need to restore your OS + OMV drive then you will need easy to the either the backup image file or the compressed backup image file.
-Accordingly, it is best to copy at least one of these to an easy to access location not managed by OMV
-Optionally, you can flash it to a suitable backup drive
+If you need to restore your OS + OMV drive then having easy access to the either the backup image file or the compressed backup image file will be important.
+Accordingly, it is best to copy at least one of these files to an easy to access location not managed by OMV.
+Optionally, you can flash it to a suitable backup drive.
 
 ## Retoring the backup
 Use a tool such as Raspberry Pi Imager to flash the image to another drive

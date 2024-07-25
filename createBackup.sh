@@ -26,13 +26,13 @@ BACKUP_FILENAME="OpenMediaVaultBackup"
 #  set to true to create a compressed image file, set to false not to create a compressed image file
 COMPRESS_IMAGE=true
 
-#REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
-# set to true to remove the uncompressed image file after the compressed image file has been create, set to false to keep the uncompressed image file
-REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED=false
-
 # COMPRESSION_LEVEL
 # Set the COMPRESSION_LEVEL level (0 no COMPRESSION_LEVEL but fast, 9 best COMPRESSION_LEVEL but slower)
 COMPRESSION_LEVEL=9
+
+#REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
+# set to true to remove the uncompressed image file after the compressed image file has been create, set to false to keep the uncompressed image file
+REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED=false
 
 #DATE_TIME
 # Get the current date and time (please do not change)
