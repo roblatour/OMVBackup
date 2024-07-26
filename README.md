@@ -1,7 +1,5 @@
 # OMVBackup
 
-copyright Rob Latour, 2024
-
 ## Purpose
 Make it easier to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
 
@@ -173,4 +171,6 @@ Hope this will be of help to you!
 ## Support
 
 [<img alt="buy me  a coffee" width="200px" src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" />](https://www.buymeacoffee.com/roblatour)
+
+copyright Rob Latour, 2024
 
