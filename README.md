@@ -184,7 +184,7 @@ Before relying on your backup, consider testing it by restoring the data to a se
 
 ## Restoring from the backup
 Use a tool such as the Raspberry Pi Imager to flash the image to another drive of the same capacity or greater.
-Of note, with the Raspberry Pi Imager the compressed image file may be used without first needing to uncompromising it
+Of note, with the Raspberry Pi Imager the compressed image file may be used without first needing to decompressed it.
 
 If you use Raspberry Pi Imager
 
