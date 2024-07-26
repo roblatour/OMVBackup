@@ -8,7 +8,7 @@ The backup process:
 - creates an image file which may be flashed to another USB drive using a flashing tool such as Raspberry Pi Imager
 - optionally compresses the image file to save space
 - provides uninterrupted direct, SSH, and OMV managed file accesses through out the backup and compress processes
-- takes the OMV web interface offline and puts the OS drive in read only mode for the time needed to do the backup
+- takes the OMV web interface offline only for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
 - no rebooting is required 
 
@@ -42,19 +42,15 @@ Setup should take about five minutes.  Here are the steps:
 
 1.  Create a directory on one of the OMV managed drives as a target for the backup
 
-2.  Sign onto the OMV machine's command line. If you sign in as root then prefixing the commands below with sudo is not required.
+2.  Sign onto the OMV machine's command line. If you sign in as root then prefixing the commands below with 'sudo' is not required.
 
 3.  If you don't already have 7zip installed, then it will need to be installed:
 
-    sudo apt update
-
-	sudo apt install p7zip-full
+    sudo apt install p7zip-full
 
 4.  If you don't already have wget installed, then it will need to be installed:
 
-    sudo apt update
-
-	sudo apt-get install wget
+    sudo apt-get install wget
 
 5.  Create a directory in which the shell file will be stored for example:
 
@@ -102,11 +98,11 @@ Setup should take about five minutes.  Here are the steps:
 
 	   Enter
 	   
-8. Set your system permissions to allow the shell file to be executed
+8. Set the system permissions to allow the shell file to be executed
 
     sudo +x createBackup.sh
 
-9. Depending on the capacity of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
+9. Depending on the capacity of the drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
 
     For more information, please see the 'Testing Results' above.
 
@@ -131,9 +127,9 @@ Setup should take about five minutes.  Here are the steps:
 	   
     Notes:
 
-	 the 120 above refers to 120 minutes, as needed you may change this value
+	 the 120 above refers to 120 minutes, as needed this value may changed
 
-	 this new timing will apply immediately and whenever you access your machine for whatever reason in the future
+	 this new timing will apply immediately and whenever the machine is accessed in the future
 	  
 
 
@@ -146,11 +142,15 @@ There are two ways to manually run the backup:
    1.1 Either directly or remotely access the OMV machine's command line
 
    1.2 Change the current directory the directory in which the shell file is stored, for example:
+
        cd ~/backupRoutine
 
    1.3 Run the createBackup shell
+
        ./createBackup.sh
+
        (enter your password if prompted)
+
 
 2. via the OMV Web Interface
    This requires that a scheduling task has been setup in OMV as noted below and that you manually run it (also as described below).
