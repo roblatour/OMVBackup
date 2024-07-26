@@ -129,7 +129,7 @@ Flashing from the backup:
 
 	sudo visudo -f /etc/sudoers.d/timeout
 
-	snd in the file that opens up add / modify a line to read:
+	in the file that opens up add / modify a line to read:
 
 
 	Defaults timestamp_timeout=120
@@ -209,19 +209,17 @@ Of note, with Raspberry Pi Imager the compressed image file may be used without 
 
 If you use Raspberry Pi Imager
 
-    Click on 'Operating System' - 'Use Custom' - and select your compressed (or uncompressed) backup file
+Click on 'Operating System' - 'Use Custom' - and select your compressed (or uncompressed) backup file
 
-	Click on 'Choose Storage' - select your USB to be flashed
+Click on 'Choose Storage' - select your USB to be flashed
 
-	Click Next
+Click Next
 
-	Click 'No' to 'Would you like to apply OS customization settings'
+Click 'No' to 'Would you like to apply OS customization settings'
 
-	Be completely sure you have selected the correct drive, and click 'Yes' to the overwrite warning prompt only if your are completely sure you have selected the correct drive
+Be completely sure you have selected the correct drive, and click 'Yes' to the overwrite warning prompt only if your are completely sure you have selected the correct drive
 
-
-
-Its a good idea to test restoring the backup to a second drive and then check that second drive works fine in your OMV machine
+Its a good idea to test restoring the backup to a second drive and then check that second drive works fine in your OMV machine.
 
 Hope this will be of help to you!
 
