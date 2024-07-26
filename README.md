@@ -1,7 +1,7 @@
 # OMVBackup
 
 ## Purpose
-Make it very easy to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
+Make it easy to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
 
 ## Behaviour
 The backup process:
@@ -10,10 +10,10 @@ The backup process:
 - provides uninterrupted direct, SSH, and OMV managed file accesses through out the backup and compress processes
 - takes the OMV web interface offline and puts the OS drive in read only mode for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
-- no rebooting needed 
+- no rebooting is required 
 
 ## Testing results
-Tested was completed on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The backup image was written to an OMV managed SSD drive.  
+Tested was done on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The backup image was written to an OMV managed SSD drive.  
 
 Run times:
 - approximately 16 minutes to create the backup file (uncompressed)
@@ -38,11 +38,11 @@ Flashing from the backup:
 
 ## Setup:
 
-Setup should take about five minutes.  
+Setup should take about five minutes.  Here are the steps:
 
 1.  Create a directory on one of the OMV managed drives as a target for the backup
 
-2.  Sign onto the OMV machine's command line. If you sign in as root prefixing the commands below with sudo is not required.
+2.  Sign onto the OMV machine's command line. If you sign in as root then prefixing the commands below with sudo is not required.
 
 3.  If you don't already have 7zip installed, then it will need to be installed:
 
@@ -60,7 +60,7 @@ Setup should take about five minutes.
 
     mkdir backupRoutine
 
-8.  Add the backup shell found in this repository into the directory crea6ed in the step above
+6.  Add the backup shell found in this repository into the directory created in the step above
 
     cd backupRoutines
 
@@ -101,12 +101,10 @@ Setup should take about five minutes.
 	   Y
 
 	   Enter
-
 	   
-8 Set your system permissions to allow the shell file to be executed
+8. Set your system permissions to allow the shell file to be executed
 
     sudo +x createBackup.sh
-
 
 9. Depending on the capacity of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
 
