@@ -48,18 +48,18 @@ Flashing from the backup:
 
 5.  If you don't already have 7zip installed, then it will need to be installed:
     sudo apt update
-    sudo apt install p7zip-full
+	sudo apt install p7zip-full
 
 6.  If you don't already have wget installed, then it will need to be installed:
     sudo apt update
-    sudo apt-get install wget
+	sudo apt-get install wget
 
 7.  Create a directory in which the shell file will be stored for example:
     mkdir backupRoutine
 
 8.  Add the backup shell found in this repository into the directory created in the step above
     cd backupRoutines
-    wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh
+	wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh
 
 9.  Edit the file createBackup.sh
     as outlined in the comments:
@@ -73,14 +73,15 @@ Flashing from the backup:
 	  BACKUP_FILENAME
 	  COMPRESS_IMAGE
 	  COMPRESSION_LEVEL
-      REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
+	  REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
 
     note: the file createBackup.sh may be edited with the following command:
       sudo nano createBackup.sh
-      and when done press:
-       Ctrl-X
-  	   Y
-  	   Enter
+	  and when done press:
+	   Ctrl-X
+	   Y
+	   Enter
+	   
 
 10. Set your system permissions to allow the shell file to be executed
     sudo +x createBackup.sh
@@ -91,14 +92,14 @@ Flashing from the backup:
 	To do this, you may issue the command:
 
 	sudo visudo -f /etc/sudoers.d/timeout
-	and in the file that opens up add / modify a line to read:
+	snd in the file that opens up add / modify a line to read:
 
 	Defaults timestamp_timeout=120
-
+	
 	and when done press:
-     Ctrl-X
-  	 Y
-  	 Enter
+	   Ctrl-X
+	   Y
+	   Enter
 
     Notes:
 	 the 120 above refers to 120 minutes, as needed you may change this value
