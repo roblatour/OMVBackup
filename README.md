@@ -60,10 +60,10 @@ Setup should take about five minutes.  Here are the steps:
 
 6.  Add the backup shell found in this repository into the directory created in the step above
 
-    6.1
+    6.1 
 		cd backupRoutines
 		
-	6.2		
+	6.2	 	
 		wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/main/createBackup.sh
 
 7.  Edit the file createBackup.sh
