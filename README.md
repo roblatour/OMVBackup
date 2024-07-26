@@ -46,63 +46,63 @@ Flashing from the backup:
 
 4.  Directly or remotely sign onto the OMV machine's command line. If you sign in as root prefixing the commands below with sudo is not required.
 
-5.  If you don't already have 7zip installed, then it will need to be installed:\n
-    sudo apt update\n
-	sudo apt install p7zip-full\n
+5.  If you don't already have 7zip installed, then it will need to be installed:/n
+    sudo apt update/n
+	sudo apt install p7zip-full/n
 
-6.  If you don't already have wget installed, then it will need to be installed:\n
-    sudo apt update\n
-	sudo apt-get install wget\n
+6.  If you don't already have wget installed, then it will need to be installed:/n
+    sudo apt update/n
+	sudo apt-get install wget/n
 
-7.  Create a directory in which the shell file will be stored for example:\n
-    mkdir backupRoutine\n
+7.  Create a directory in which the shell file will be stored for example:/n
+    mkdir backupRoutine/n
 
-8.  Add the backup shell found in this repository into the directory created in the step above\n
-    cd backupRoutines\n
-	wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh\n
+8.  Add the backup shell found in this repository into the directory created in the step above/n
+    cd backupRoutines/n
+	wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh/n
 
-9.  Edit the file createBackup.sh\n
-    as outlined in the comments:\n
-    \n
-	 change the values for:\n
-	  BACKUP_DRIVE_ID\n
-	  BACKUP_DRIVE_NAME\n
-	  BACKUP_DIRECTORY\n
-	\n
-	 optionally change the values for:\n
-	  BACKUP_FILENAME\n
-	  COMPRESS_IMAGE\n
-	  COMPRESSION_LEVEL\n
-	  REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED\n
-    \n
-    note: the file createBackup.sh may be edited with the following command:\n
-      sudo nano createBackup.sh\n
-	  and when done press:\n
-	   Ctrl-X\n
-	   Y\n
-	   Enter\n
+9.  Edit the file createBackup.sh/n
+    as outlined in the comments:/n
+    /n
+	 change the values for:/n
+	  BACKUP_DRIVE_ID/n
+	  BACKUP_DRIVE_NAME/n
+	  BACKUP_DIRECTORY/n
+	/n
+	 optionally change the values for:/n
+	  BACKUP_FILENAME/n
+	  COMPRESS_IMAGE/n
+	  COMPRESSION_LEVEL/n
+	  REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED/n
+    /n
+    note: the file createBackup.sh may be edited with the following command:/n
+      sudo nano createBackup.sh/n
+	  and when done press:/n
+	   Ctrl-X/n
+	   Y/n
+	   Enter/n
 	   
-10. Set your system permissions to allow the shell file to be executed\n
-    sudo +x createBackup.sh\n
+10. Set your system permissions to allow the shell file to be executed/n
+    sudo +x createBackup.sh/n
 
-11. Depending on the capacity of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.\n
-    For more information, please see the 'Testing Results' above.\n
-	Accordingly, if you don't ssh in using root, then you will need to extend the sudo timeout limit to be long enough for the shell to run to completion.\n
-	To do this, you may issue the command:\n
+11. Depending on the capacity of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete./n
+    For more information, please see the 'Testing Results' above./n
+	Accordingly, if you don't ssh in using root, then you will need to extend the sudo timeout limit to be long enough for the shell to run to completion./n
+	To do this, you may issue the command:/n
 
-	sudo visudo -f /etc/sudoers.d/timeout\n
-	snd in the file that opens up add / modify a line to read:\n
+	sudo visudo -f /etc/sudoers.d/timeout/n
+	snd in the file that opens up add / modify a line to read:/n
 
-	Defaults timestamp_timeout=120\n
+	Defaults timestamp_timeout=120/n
 	
-	and when done press:\n
-	   Ctrl-X\n
-	   Y\n
-	   Enter\n
-\n
-    Notes:\n
-	 the 120 above refers to 120 minutes, as needed you may change this value\n
-	 this new timing will apply immediately and whenever you access your machine for whatever reason in the future\n
+	and when done press:/n
+	   Ctrl-X/n
+	   Y/n
+	   Enter/n
+/n
+    Notes:/n
+	 the 120 above refers to 120 minutes, as needed you may change this value/n
+	 this new timing will apply immediately and whenever you access your machine for whatever reason in the future/n
 
 ## Manually running the backup
 
@@ -135,10 +135,10 @@ To do this:
     For example mine runs on the first day of each month at 1am
 	with Certain Day; Minute 0; Hour 1; Day of Month 1; Month \*; Day of week \*
 5.  Set the user to root
-6.  Set the command to:\n
-    (from the root user's perspective the path on your system where the createBackup.sh file is stored)\createBackup.sh\n
-	for example mine is set to:\n
-	/home/rob/backupRoutine/createBackup.sh\n
+6.  Set the command to:/n
+    (from the root user's perspective the path on your system where the createBackup.sh file is stored)\createBackup.sh/n
+	for example mine is set to:/n
+	/home/rob/backupRoutine/createBackup.sh/n
 7.  'Send command output via email'	may be optionally checked if within the OMV Web Interface System - Notifications - Settings is enabled	
 8. Save and apply pending changes
 
@@ -155,13 +155,13 @@ Optionally, you can flash it to a suitable backup drive (more information direct
 Use a tool such as Raspberry Pi Imager to flash the image to another drive of the same capacity or greater.
 Of note, with Raspberry Pi Imager the compressed image file may be used without uncompromising it
 
-If you use Raspberry Pi Imager\n
-    Click on 'Operating System' - 'Use Custom' - and select your compressed (or uncompressed) backup file\n
-	Click on 'Choose Storage' - select your USB to be flashed\n
-	Click Next\n
-	Click 'No' to 'Would you like to apply OS customization settings'\n
-	Be completely sure you have selected the correct drive, and click 'Yes' to the overwrite warning prompt only if your are completely sure you have selected the correct drive\n
-\n
+If you use Raspberry Pi Imager/n
+    Click on 'Operating System' - 'Use Custom' - and select your compressed (or uncompressed) backup file/n
+	Click on 'Choose Storage' - select your USB to be flashed/n
+	Click Next/n
+	Click 'No' to 'Would you like to apply OS customization settings'/n
+	Be completely sure you have selected the correct drive, and click 'Yes' to the overwrite warning prompt only if your are completely sure you have selected the correct drive/n
+/n
 Its a good idea to test restoring the backup to a second drive and then check that second drive works fine in your OMV machine
 
 Hope this will be of help to you!
