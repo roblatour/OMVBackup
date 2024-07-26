@@ -141,9 +141,9 @@ There are two ways to manually run the backup:
 
 1. via the command line
 
-   1.1 Either directly or remotely access the OMV machine's command line
+   1.1 Directly or remotely access the OMV machine's command line
 
-   1.2 Change the current directory the directory in which the shell file is stored, for example:
+   1.2 Change the current directory to the directory in which the shell file is stored, for example:
    
 		cd ~/backupRoutine
 
@@ -176,15 +176,15 @@ To do this:
 8. Save and apply pending changes
 
 You can manually run this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar.
-However, if you do this your OMV web interface should almost immediately become unresponsive for new activities as the first thing the shell does, prior to a making backup, is take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup (as mentioned above).
-Having that said, while the backup is running you will still have direct, SSH and OMV managed file accesses (also as mentioned above).
+However, if you do this your OMV web interface should almost immediately become unresponsive for new activities as the first thing the shell does, prior to a making backup, is take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup.
+Having that said, while the backup is running you will still have direct, SSH and OMV managed file accesses.
 When the backup completes usage of the OMV web interface will return to normal.
 
 ## When the backup is finished
 If you need to restore your OS + OMV drive then having easy access to the either the backup image file or the compressed backup image file will be important.
 Accordingly, it is best to copy at least one of these files to an easy to access location not managed by OMV.
 
-Before relying on your backup, consider testing it by restoring the data to a secondary drive and confirming that the drive works seamlessly in your OMV setup (more information directly below).
+Before relying on your backup, consider testing it by restoring the image to a secondary drive and confirming that the restored drive works seamlessly in your OMV setup (more information directly below).
 
 ## Restoring from the backup
 Use a tool such as the Raspberry Pi Imager to flash the image to another drive of the same capacity or greater.
@@ -200,7 +200,7 @@ Click Next
 
 Click 'No' to 'Would you like to apply OS customization settings'
 
-Click 'Yes' to the overwrite warning prompt only if your are completely sure you have selected the correct drive
+Click 'Yes' to the overwrite warning prompt only when you're completely sure you have selected the correct drive
 
 
 Hope this will be of help to you!
