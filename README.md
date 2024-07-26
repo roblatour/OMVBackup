@@ -72,26 +72,26 @@ Setup should take about five minutes.  Here are the steps:
 
 	 change the values for:
 
-	    BACKUP_DRIVE_ID
+     - BACKUP_DRIVE_ID
 
-	    BACKUP_DRIVE_NAME
+     - BACKUP_DRIVE_NAME
 
-	    BACKUP_DIRECTORY
+     - BACKUP_DIRECTORY
 
 	
 	 optionally change the values for:
 
-	    BACKUP_FILENAME
+     - BACKUP_FILENAME
 
-	    COMPRESS_IMAGE
+     - COMPRESS_IMAGE
 
-	    COMPRESSION_LEVEL
+     - COMPRESSION_LEVEL
 
-	    REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
+     - REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
 	  
-	    HTTP_PORT
+     - HTTP_PORT
 	  
-	    HTTPS_PORT
+     - HTTPS_PORT
     
     note: the file createBackup.sh may be edited with the following command:
 
