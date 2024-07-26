@@ -121,17 +121,14 @@ Setup should take about five minutes.  Here are the steps:
 
 	Defaults timestamp_timeout=120
 
-	
 	and when done press:
 
-	   Ctrl-X
+	  Ctrl-X
 
-	   Y
+	  Y
 
-	   Enter
-
-
-
+	  Enter
+	   
     Notes:
 
 	 the 120 above refers to 120 minutes, as needed you may change this value
@@ -158,7 +155,7 @@ There are two ways to manually run the backup:
 2. via the OMV Web Interface
    This requires that a scheduling task has been setup in OMV as noted below and that you manually run it (also as described below).
    
-Note: if within OMV, System - Notification - Events Process Monitoring and/or Multiple Device (Software RAID) are enabled then several e-mail alters will be generated while the backup is running.   
+Note: if within OMV, System - Notification - Events Process Monitoring is enabled then a few e-mail alerts will be generated while the backup is running.   
 
 ## Automatically running the backup
 OMV's scheduling feature can be used to setup automatic periodic backups
