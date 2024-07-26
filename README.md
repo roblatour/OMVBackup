@@ -46,21 +46,21 @@ Setup should take about five minutes.  Here are the steps:
 
 3.  If you don't already have 7zip installed, then it will need to be installed:
 
-    sudo apt install p7zip-full
+		sudo apt install p7zip-full
 
 4.  If you don't already have wget installed, then it will need to be installed:
 
-    sudo apt-get install wget
+		sudo apt-get install wget
 
 5.  Create a directory in which the shell file will be stored for example:
 
-    mkdir backupRoutine
+		mkdir backupRoutine
 
 6.  Add the backup shell found in this repository into the directory created in the step above
 
-    cd backupRoutines
+		cd backupRoutines
 
-	wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh
+		wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh
 
 7.  Edit the file createBackup.sh
 
@@ -88,7 +88,7 @@ Setup should take about five minutes.  Here are the steps:
     
     note: the file createBackup.sh may be edited with the following command:
 
-      sudo nano createBackup.sh
+		sudo nano createBackup.sh
 
 	  and when done press:
 
@@ -100,7 +100,7 @@ Setup should take about five minutes.  Here are the steps:
 	   
 8. Set the system permissions to allow the shell file to be executed
 
-    sudo +x createBackup.sh
+		sudo +x createBackup.sh
 
 9. Depending on the capacity of the drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
 
@@ -114,8 +114,7 @@ Setup should take about five minutes.  Here are the steps:
 
 	in the file that opens, add / modify a line to read:
 
-
-	Defaults timestamp_timeout=120
+		Defaults timestamp_timeout=120
 
 	and when done press:
 
@@ -142,10 +141,10 @@ There are two ways to manually run the backup:
    1.1 Either directly or remotely access the OMV machine's command line
 
    1.2 Change the current directory the directory in which the shell file is stored, for example:
-       cd ~/backupRoutine
+		cd ~/backupRoutine
 
    1.3 Run the createBackup shell
-       ./createBackup.sh
+		./createBackup.sh
 
        (enter your password if prompted)
 
