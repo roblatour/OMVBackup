@@ -10,7 +10,7 @@ The backup process:
 - provides uninterrupted direct, SSH, and OMV managed file accesses through out the backup and compress processes
 - takes the OMV web interface offline only for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
-- no rebooting is required 
+- rebooting is not required 
 
 ## Testing results
 Tested was done on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The backup image was written to an OMV managed SSD drive.  
@@ -108,11 +108,11 @@ Setup should take about five minutes.  Here are the steps:
 
 	Accordingly, if you don't sign as the root user you will need to extend the (default 15 minute) sudo timeout limit to be long enough for the shell to run to completion.
 
-	To do this, you may issue the command:
+	To do this, issue the command:
 
 	sudo visudo -f /etc/sudoers.d/timeout
 
-	in the file that opens up add / modify a line to read:
+	in the file that opens, add / modify a line to read:
 
 
 	Defaults timestamp_timeout=120
@@ -127,7 +127,7 @@ Setup should take about five minutes.  Here are the steps:
 	   
     Notes:
 
-	 the 120 above refers to 120 minutes, as needed this value may changed
+	 the '120' above refers to 120 minutes, as needed this value may changed
 
 	 this new timing will apply immediately and whenever the machine is accessed in the future
 	  
