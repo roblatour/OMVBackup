@@ -109,8 +109,8 @@ Setup should take about five minutes.  Here are the steps:
 	Accordingly, if you don't sign as the root user you will need to extend the (default 15 minute) sudo timeout limit to be long enough for the shell to run to completion.
 
 	To do this, issue the command:
-##
-<tab><tab>	sudo visudo -f /etc/sudoers.d/timeout
+	
+		sudo visudo -f /etc/sudoers.d/timeout
 
 	in the file that opens, add / modify a line to read:
 
