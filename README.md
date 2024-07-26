@@ -57,13 +57,16 @@ Setup should take about five minutes.  Here are the steps:
 5.  Create a directory in which the shell file will be stored, for example:
 
 		mkdir backupRoutine
-
-6.  Add the backup shell found in this repository into the directory created in the step above
+		
+6.  Make the new directory the current directory
 
 		cd backupRoutines
+
+7.  Add the backup shell found in this repository into the new directory
+
 		wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/main/createBackup.sh
 
-7.  Edit the file createBackup.sh
+8.  Edit the file createBackup.sh
 
     as outlined in the comments:  
 
@@ -85,7 +88,10 @@ Setup should take about five minutes.  Here are the steps:
 	  COMPRESSION_LEVEL
 
 	  REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
-
+	  
+	  HTTP_PORT
+	  
+	  HTTPS_PORT
     
     note: the file createBackup.sh may be edited with the following command:
 

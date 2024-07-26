@@ -29,31 +29,27 @@ COMPRESS_IMAGE=true
 # Set the COMPRESSION_LEVEL level (0 no COMPRESSION_LEVEL but fast, 9 best COMPRESSION_LEVEL but slower).
 COMPRESSION_LEVEL=9
 
-# HTTP_PORT
-HTTP_PORT=$(sudo awk '$1 == "listen" {print $2}' /etc/nginx/sites-available/default | cut -d':' -f2)
-
-# HTTPS_PORT
-HTTPS_PORT=$(sudo awk '$1 == "listen" && /ssl/ {print $2}' /etc/nginx/sites-available/default | cut -d':' -f2)
-
 #REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
 # Set to true to remove the uncompressed image file after the compressed image file has been create, set to false to keep the uncompressed image file.
 REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED=false
 
+# HTTP and HTTPS PORTS
+# By default, the http port used by OMV is 80 and the https port used is 443
+# If you are unsure which ports your system uses you can confirm them with the following command from the command line:
+#   grep 'listen' /etc/nginx/sites-available/default | grep 'default' | grep -v '\['
+# the http port number should be identified where it says (for example and by default) "listen 80 default_server;" (or "#  listen 80 default_server;" if http is not used)
+# the https port number should be identified where it says (for example and by default) "listen 443 ssl default_server;" or (or "#  listen 443 ssl default_server;" if https is not used)
+# regardless of if the port is used or not, its value should be set directly below
+HTTP_PORT=80
+HTTPS_PORT=443
+
 #DATE_TIME
-# Get the current date and time (please do not change).
+# Get the current date and time (please do not change)
 DATE_TIME=$(date +"_%Y-%m-%d_%H-%M-%S")
 
 # OS_DRIVE
-# Get the device that holds the root filesystem (please do not change this code).
+# Get the device that holds the root filesystem (please do not change this code)
 OS_DRIVE=/dev/$(lsblk -no pkname $(mount | grep "on / " | cut -d' ' -f1))
-
-# HTTP_PORT
-# OMV Web Interface HTTP_PORT (change this only if the default port of 80 is not being used)
-HTTP_PORT=80
-
-# HTTPS_PORT
-# OMV Web Interface HTTPS_PORT (change this only if the default port of 443 is not being used)
-HTTPS_PORT=443
 
 # OK lets go!
 
