@@ -147,7 +147,7 @@ There are two ways to manually run the backup:
    1.3 Run the createBackup shell:
    
 		./createBackup.sh
-
+  
        (enter your password if prompted)
 
 2. via the OMV Web Interface
