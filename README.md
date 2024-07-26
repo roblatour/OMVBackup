@@ -147,8 +147,6 @@ There are two ways to manually run the backup:
 		./createBackup.sh
 
 2. via the OMV web interface. This requires that a scheduling task has been setup in OMV (as described below) and that you manually run that task (also as described below).
-   
-Note: if within OMV, System - Notification - Events Process Monitoring is enabled then a few e-mail alerts will be generated while the backup is running.   
 
 ## Automatically running the backup
 OMV's scheduling feature can be used to setup automatic periodic backups

@@ -29,6 +29,12 @@ COMPRESS_IMAGE=true
 # Set the COMPRESSION_LEVEL level (0 no COMPRESSION_LEVEL but fast, 9 best COMPRESSION_LEVEL but slower).
 COMPRESSION_LEVEL=9
 
+# HTTP_PORT
+HTTP_PORT=$(sudo awk '$1 == "listen" {print $2}' /etc/nginx/sites-available/default | cut -d':' -f2)
+
+# HTTPS_PORT
+HTTPS_PORT=$(sudo awk '$1 == "listen" && /ssl/ {print $2}' /etc/nginx/sites-available/default | cut -d':' -f2)
+
 #REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
 # Set to true to remove the uncompressed image file after the compressed image file has been create, set to false to keep the uncompressed image file.
 REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED=false
@@ -38,8 +44,16 @@ REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED=false
 DATE_TIME=$(date +"_%Y-%m-%d_%H-%M-%S")
 
 # OS_DRIVE
-# Get the device that holds the root filesystem (please do not change).
+# Get the device that holds the root filesystem (please do not change this code).
 OS_DRIVE=/dev/$(lsblk -no pkname $(mount | grep "on / " | cut -d' ' -f1))
+
+# HTTP_PORT
+# OMV Web Interface HTTP_PORT (change this only if the default port of 80 is not being used)
+HTTP_PORT=80
+
+# HTTPS_PORT
+# OMV Web Interface HTTPS_PORT (change this only if the default port of 443 is not being used)
+HTTPS_PORT=443
 
 # OK lets go!
 
@@ -60,15 +74,13 @@ else
   exit 2
 fi
 
-echo "Clearing buffers"
-sudo free && sudo sync && echo 3 > sudo /proc/sys/vm/drop_caches && sudo free
- 
-echo "Placing the OS drive in read only mode"
+echo "Place the OS drive in read only mode"
 sudo blockdev -v --setro /dev/sda
 
-echo "Taking down Open Media Vault web interface access"
-sudo systemctl stop nginx.service > /dev/null 2>&1
-sudo systemctl mask nginx.service > /dev/null 2>&1
+echo "Taking Open Media Vault's web interface offline"
+echo "Access via ports " ${HTTP_PORT} " and " ${HTTPS_PORT} " being removed"
+sudo iptables -A INPUT -p tcp --dport ${HTTP_PORT} -j DROP
+sudo iptables -A INPUT -p tcp --dport ${HTTPS_PORT} -j DROP
 
 echo "Creating backup file"
 sudo dd bs=4M if=${OS_DRIVE} of="${BACKUP_DRIVE_ID}/${BACKUP_DRIVE_NAME}/${BACKUP_DIRECTORY}/${BACKUP_FILENAME}${DATE_TIME}.img" status=progress oflag=sync
@@ -78,9 +90,10 @@ echo "... backup file created"
 echo "Restoring the OS drive to read write mode"
 sudo blockdev -v --setrw /dev/sda
 
-echo "Restoring Open Media Vault web interface access"
-sudo systemctl unmask nginx.service > /dev/null 2>&1
-sudo systemctl start nginx.service > /dev/null 2>&1
+echo "Placing Open Media Vault's web interface back online"
+echo "Access via ports " ${HTTP_PORT} " and " ${HTTPS_PORT} " being restored"
+sudo iptables -D INPUT -p tcp --dport ${HTTP_PORT} -j DROP
+sudo iptables -D INPUT -p tcp --dport ${HTTPS_PORT} -j DROP
 
 echo "The Open Media Vault web interface is back online after $((($(date +%s) - $(date +%s --date="$(ps -o lstart= -p $$)")) / 60)) minutes and $((($(date +%s) - $(date +%s --date="$(ps -o lstart= -p $$)")) % 60)) seconds"
 
@@ -99,6 +112,10 @@ if $COMPRESS_IMAGE; then
     echo "uncompressed image file removed"
 
    fi
+
+else
+
+  echo "The option to compress the image file was set to false. Accordingly, the backup image file was not compressed"
 
 fi
 
