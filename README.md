@@ -66,9 +66,7 @@ Setup should take about five minutes.  Here are the steps:
 
 		wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/main/createBackup.sh
 
-8.  Edit the file createBackup.sh
-
-    as outlined in the comments:  
+8.  Edit the file createBackup.sh and as outlined in the comments:  
 
 	 change the values for:
 
