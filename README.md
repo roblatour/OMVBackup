@@ -59,8 +59,7 @@ Setup should take about five minutes.  Here are the steps:
 6.  Add the backup shell found in this repository into the directory created in the step above
 
 		cd backupRoutines
-
-
+  
 		wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh
 
 7.  Edit the file createBackup.sh
@@ -142,9 +141,11 @@ There are two ways to manually run the backup:
    1.1 Either directly or remotely access the OMV machine's command line
 
    1.2 Change the current directory the directory in which the shell file is stored, for example:
+   
 		cd ~/backupRoutine
 
-   1.3 Run the createBackup shell
+   1.3 Run the createBackup shell:
+   
 		./createBackup.sh
 
        (enter your password if prompted)
