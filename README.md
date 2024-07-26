@@ -7,15 +7,15 @@ Make it very easy to back up and restore a bootable drive with Linux and Open Me
 The backup process:
 - creates an image file which may be flashed to another USB drive using a flashing tool such as Raspberry Pi Imager
 - optionally compresses the image file to save space
-- provides uninterrupted direct, SSH, and OMV drives access through out the backup and compress processes
+- provides uninterrupted direct, SSH, and OMV managed file accesses through out the backup and compress processes
 - takes the OMV web interface offline and puts the OS drive in read only mode for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
 - no rebooting needed 
 
 ## Testing results
-I've tested the shell on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The backup image was written to an OMV managed SSD drive.
+Tested was completed on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The backup image was written to an OMV managed SSD drive.  
 
-Run times on my system:
+Run times:
 - approximately 16 minutes to create the backup file (uncompressed)
 - approximately another 36 minutes to compress the backup file
 
@@ -186,7 +186,7 @@ To do this:
 
 You can test this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar.
 However, if you do this your OMV Web connection should almost immediately be disconnected as the first thing the shell does, prior to making backup, is (as mentioned above) take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup.
-Having that said, while the backup is running you will still have direct, SSH and OMV file accesses (also as mentioned above).
+Having that said, while the backup is running you will still have direct, SSH and OMV managed file accesses (also as mentioned above).
 
 ## When the backup is finished
 If you need to restore your OS + OMV drive then having easy access to the either the backup image file or the compressed backup image file will be important.
