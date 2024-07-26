@@ -21,7 +21,7 @@ Run times:
 
 CPU usage:
 - the backup process used only marginally more CPU than when the system was idle
-- the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time. Regardless, the OMV Web Interface and OMV managed file access performance remained respectable during the compress process.
+- the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time. Regardless, the OMV web interface and OMV managed file access performance remained respectable during the compress process.
 
 File sizes:
 - uncompressed backup file: 28.6 GB
@@ -148,7 +148,7 @@ There are two ways to manually run the backup:
    
 		./createBackup.sh
 
-2. via the OMV Web Interface
+2. via the OMV web interface
    This requires that a scheduling task has been setup in OMV as noted below and that you manually run it (also as described below).
    
 Note: if within OMV, System - Notification - Events Process Monitoring is enabled then a few e-mail alerts will be generated while the backup is running.   
@@ -157,7 +157,7 @@ Note: if within OMV, System - Notification - Events Process Monitoring is enable
 OMV's scheduling feature can be used to setup automatic periodic backups
 
 To do this:
-1.  Sign on to the OMV Web interface as admin
+1.  Sign on to the OMV web interface as admin
 2.  Go to System - Scheduled Tasks and click on the + sign in the horizontal menu bar to add a new task
 3.  Check Enabled
 4.  Set your desired scheduling;
@@ -172,11 +172,11 @@ To do this:
 
 	/home/rob/backupRoutine/createBackup.sh
 
-7. The option 'Send command output via email' may be checked if within the OMV Web Interface System - Notifications - Settings is enabled	
+7. The option 'Send command output via email' may be checked if within the OMV web interface System - Notifications - Settings is enabled	
 8. Save and apply pending changes
 
 You can test this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar.
-However, if you do this your OMV Web connection should almost immediately be disconnected as the first thing the shell does, prior to making backup, is (as mentioned above) take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup.
+However, if you do this your OMV web interface connection should almost immediately be disconnected as the first thing the shell does, prior to making backup, is (as mentioned above) take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup.
 Having that said, while the backup is running you will still have direct, SSH and OMV managed file accesses (also as mentioned above).
 
 ## When the backup is finished

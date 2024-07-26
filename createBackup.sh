@@ -60,28 +60,29 @@ else
   exit 2
 fi
 
+echo "Clearing buffers"
+sudo free && sudo sync && echo 3 > sudo /proc/sys/vm/drop_caches && sudo free
+ 
 echo "Placing the OS drive in read only mode"
-sudo blockdev --setro /dev/sda
+sudo blockdev -v --setro /dev/sda
 
-echo "Taking down Open Media Vault web access"
+echo "Taking down Open Media Vault web interface access"
 sudo systemctl stop nginx.service > /dev/null 2>&1
 sudo systemctl mask nginx.service > /dev/null 2>&1
 
 echo "Creating backup file"
-
-# Create the image file
 sudo dd bs=4M if=${OS_DRIVE} of="${BACKUP_DRIVE_ID}/${BACKUP_DRIVE_NAME}/${BACKUP_DIRECTORY}/${BACKUP_FILENAME}${DATE_TIME}.img" status=progress oflag=sync
 
 echo "... backup file created"
 
-echo "Restoring Open Media Vault web access"
-sudo blockdev --setrw /dev/sda
+echo "Restoring the OS drive to read write mode"
+sudo blockdev -v --setrw /dev/sda
 
-echo "Restoring online access to Open Media Vault"
+echo "Restoring Open Media Vault web interface access"
 sudo systemctl unmask nginx.service > /dev/null 2>&1
 sudo systemctl start nginx.service > /dev/null 2>&1
 
-echo "Open Media Vault is back online after $((($(date +%s) - $(date +%s --date="$(ps -o lstart= -p $$)")) / 60)) minutes and $((($(date +%s) - $(date +%s --date="$(ps -o lstart= -p $$)")) % 60)) seconds"
+echo "The Open Media Vault web interface is back online after $((($(date +%s) - $(date +%s --date="$(ps -o lstart= -p $$)")) / 60)) minutes and $((($(date +%s) - $(date +%s --date="$(ps -o lstart= -p $$)")) % 60)) seconds"
 
 if $COMPRESS_IMAGE; then
 
