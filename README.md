@@ -1,7 +1,7 @@
 # OMVBackup
 
 ## Purpose
-Make it easy to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
+Make it easy to back up and restore Linux and Open Media Vault (OMV) installed on a (16GB / 32GB / 64GB) USB drive.
 
 ## Behaviour
 The backup process:
@@ -12,8 +12,8 @@ The backup process:
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
 - rebooting is not required 
 
-## Testing results
-Testing done on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The backup image was written to an OMV managed SSD drive.  
+## Testing and performance results
+Testing done on a Raspberry Pi 5 (8GB), running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), with a SanDisk Ultra Fit 32GB USB Flash drive.  The backup image was written to an OMV managed SSD drive.
 
 Run times:
 - approximately 16 minutes to create the backup file (uncompressed)
@@ -28,7 +28,9 @@ CPU usage:
 - the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time. Regardless, the OMV web interface and OMV managed file access performance remained respectable during the compress process.
 
 Flashing from the backup:
-- using Raspberry Pi Imager it took about an hour to flash from the backed-up image. This timing was not impacted by the backed-up image file was compressed or not.
+- using Raspberry Pi Imager it took about an hour to flash from the backed-up image. This timing was not notably impacted whether the image file was compressed or not.
+
+A Raspberry Pi 5 (8GB) with the same brand of USB Flash drive may be assumed to have the run times, file sizes, and flash times above doubled for a 64 GB drive and halved for a 16 GB drive.
 
 ## Prerequisites:
 	
@@ -58,9 +60,11 @@ Setup should take about five minutes.  Here are the steps:
 
 6.  Add the backup shell found in this repository into the directory created in the step above
 
+    6.1
 		cd backupRoutines
 		
-		wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh
+	6.2		
+		wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/main/createBackup.sh
 
 7.  Edit the file createBackup.sh
 
