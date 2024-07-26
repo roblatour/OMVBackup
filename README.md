@@ -107,7 +107,7 @@ Setup should take about five minutes.  Here are the steps:
 	   
 8. Set the system permissions to allow the shell file to be executed
 
-		sudo +x createBackup.sh
+		sudo chmod +x createBackup.sh
 
 9. Depending on the capacity of the drive to be imaged (and optionally compressed) the overall process will take a good amount of time to complete. For more information, please see the 'Testing Results' above.
 
