@@ -1,20 +1,16 @@
 # OMVBackup
 
 ## Purpose
-Make it easier to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
-
-I created this shell to backup a 32GB USB thumb drive on which OMV and Linux are running.
-It was created with a goal of making the entire backup and restore process as simple as possible.
-There are other solutions for this, but this works well for me so I thought I'd share.
+Make it very easy to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
 
 ## Behaviour
 The backup process:
-- creates a image file which may be flashed to another like (or higher capacity) USB drive using a flashing tool such as Raspberry Pi Imager
+- creates an image file which may be flashed to another USB drive using a flashing tool such as Raspberry Pi Imager
 - optionally compresses the image file to save space
-- provides for uninterrupted direct and SSH access as well as access to OMV drives through out the backup and compress processes
+- provides uninterrupted direct, SSH, and OMV drives access through out the backup and compress processes
 - takes the OMV web interface offline and puts the OS drive in read only mode for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
-- rebooting is not needed before or after the process has run
+- no rebooting needed 
 
 ## Testing results
 I've tested the shell on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The backup image was written to an OMV managed SSD drive.
@@ -25,58 +21,54 @@ Run times on my system:
 
 CPU usage:
 - the backup process used only marginally more CPU than when the system was idle
-- the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time.  Regardless, the OMV Web Interface and OMV managed file access performance remained respectable during the compress process.
+- the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time. Regardless, the OMV Web Interface and OMV managed file access performance remained respectable during the compress process.
 
 File sizes:
 - uncompressed backup file: 28.6 GB
 - compressed backup file:    776 MB ( < 3% of the uncompressed backup file size )
 
 Flashing from the backup:
-- using Raspberry Pi Imager it took about an hour to flash from the backup. This timing was not impacted by the input image file being compressed or not.
+- using Raspberry Pi Imager it took about an hour to flash from the backed-up image. This timing was not impacted by the backed-up image file was compressed or not.
 
-## Prerequisites and setup:
-
-(assuming you have the prerequisites outlined in points 1 and 2 below, setup should only take about five minutes)	
+## Prerequisites:
 	
 1.  OMV should be installed and configured, this to include at least one OMV drive to which the backup may be saved
 
 2.  Either direct or remote (SSH) access is required to the system running OMV
 
-3.  Create a directory on one of the OMV managed drives as a target for the backup
+## Setup:
 
-4.  Directly or remotely sign onto the OMV machine's command line. If you sign in as root prefixing the commands below with sudo is not required.
+Setup should take about five minutes.  
 
-5.  If you don't already have 7zip installed, then it will need to be installed:
+1.  Create a directory on one of the OMV managed drives as a target for the backup
+
+2.  Sign onto the OMV machine's command line. If you sign in as root prefixing the commands below with sudo is not required.
+
+3.  If you don't already have 7zip installed, then it will need to be installed:
 
     sudo apt update
 
 	sudo apt install p7zip-full
 
-
-6.  If you don't already have wget installed, then it will need to be installed:
+4.  If you don't already have wget installed, then it will need to be installed:
 
     sudo apt update
 
 	sudo apt-get install wget
 
-
-7.  Create a directory in which the shell file will be stored for example:
+5.  Create a directory in which the shell file will be stored for example:
 
     mkdir backupRoutine
 
-
-8.  Add the backup shell found in this repository into the directory created in the step above
+8.  Add the backup shell found in this repository into the directory crea6ed in the step above
 
     cd backupRoutines
 
 	wget -O createBackup.sh https://raw.githubusercontent.com/roblatour/OMVBackup/master/createBackup.sh
 
+7.  Edit the file createBackup.sh
 
-9.  Edit the file createBackup.sh
-
-    as outlined in the comments:
-
-    
+    as outlined in the comments:  
 
 	 change the values for:
 
@@ -87,7 +79,6 @@ Flashing from the backup:
 	  BACKUP_DIRECTORY
 
 	
-
 	 optionally change the values for:
 
 	  BACKUP_FILENAME
@@ -99,7 +90,6 @@ Flashing from the backup:
 	  REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED
 
     
-
     note: the file createBackup.sh may be edited with the following command:
 
       sudo nano createBackup.sh
@@ -113,19 +103,18 @@ Flashing from the backup:
 	   Enter
 
 	   
-10. Set your system permissions to allow the shell file to be executed
+8 Set your system permissions to allow the shell file to be executed
 
     sudo +x createBackup.sh
 
 
-11. Depending on the capacity of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
+9. Depending on the capacity of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
 
     For more information, please see the 'Testing Results' above.
 
-	Accordingly, if you don't ssh in using root, then you will need to extend the sudo timeout limit to be long enough for the shell to run to completion.
+	Accordingly, if you don't sign as the root user you will need to extend the (default 15 minute) sudo timeout limit to be long enough for the shell to run to completion.
 
 	To do this, you may issue the command:
-
 
 	sudo visudo -f /etc/sudoers.d/timeout
 
@@ -150,6 +139,7 @@ Flashing from the backup:
 	 the 120 above refers to 120 minutes, as needed you may change this value
 
 	 this new timing will apply immediately and whenever you access your machine for whatever reason in the future
+	  
 
 
 ## Manually running the backup
@@ -191,7 +181,7 @@ To do this:
 
 	/home/rob/backupRoutine/createBackup.sh
 
-7.  'Send command output via email'	may be optionally checked if within the OMV Web Interface System - Notifications - Settings is enabled	
+7. The option 'Send command output via email' may be checked if within the OMV Web Interface System - Notifications - Settings is enabled	
 8. Save and apply pending changes
 
 You can test this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar.
