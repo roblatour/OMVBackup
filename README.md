@@ -3,21 +3,21 @@
 ## Purpose
 Make it easier to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
 
-I created this shell to backup my 32GB USB thumb drive on which OMV and Linux are running.
+I created this shell to backup a 32GB USB thumb drive on which OMV and Linux are running.
 It was created with a goal of making the entire backup and restore process as simple as possible.
 There are other solutions for this, but this works well for me so I thought I'd share.
 
 ## Behaviour
 The backup process:
-- creates a image file which may be flashed to another like (or larger) USB drive using a flashing tool such as Raspberry Pi Imager
+- creates a image file which may be flashed to another like (or higher capacity) USB drive using a flashing tool such as Raspberry Pi Imager
 - optionally compresses the image file to save space
-- allows uninterrupted direct and SSH access as well as access to OMV drives through out the backup and compress processes
+- provides for uninterrupted direct and SSH access as well as access to OMV drives through out the backup and compress processes
 - takes the OMV web interface offline and puts the OS drive in read only mode for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
 - rebooting is not needed before or after the process has run
 
 ## Testing results
-I've tested the shell on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The test backup directory where the backup was stored was on an OMV managed SSD drive.
+I've tested the shell on a Raspberry Pi 5, running Armbian 6.6.41-current-bcm2712 and OMV 7.4.3-1 (Sandworm), from a 32 GB USB thumb drive.  The backup image was written to an OMV managed SSD drive.
 
 Run times on my system:
 - approximately 16 minutes to create the backup file (uncompressed)
@@ -25,7 +25,7 @@ Run times on my system:
 
 CPU usage:
 - the backup process used only marginally more CPU than when the system was idle
-- the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time.  Regardless, the OMV Web Interface and OMV managed file access performance remained functional during the compress process.
+- the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time.  Regardless, the OMV Web Interface and OMV managed file access performance remained respectable during the compress process.
 
 File sizes:
 - uncompressed backup file: 28.6 GB
@@ -36,7 +36,7 @@ Flashing from the backup:
 
 ## Prerequisites and setup:
 
-(assuming you have the prerequisites outlined in points 1 and 2 below, step should only take about five minutes)	
+(assuming you have the prerequisites outlined in points 1 and 2 below, setup should only take about five minutes)	
 	
 1.  OMV should be installed and configured, this to include at least one OMV drive to which the backup may be saved
 
@@ -44,8 +44,7 @@ Flashing from the backup:
 
 3.  Create a directory on one of the OMV managed drives as a target for the backup
 
-4.  Directly or remotely sign onto the OMV machine's command line
-    note: if you sign in as root prefixing the commands below with sudo is not required
+4.  Directly or remotely sign onto the OMV machine's command line. If you sign in as root prefixing the commands below with sudo is not required.
 
 5.  If you don't already have 7zip installed, then it will need to be installed:
     sudo apt update
