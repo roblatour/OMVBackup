@@ -2,21 +2,12 @@
 
 copyright Rob Latour, 2024
 
-## Project outline
+## Purpose
 Make it easier to back up and restore a bootable drive with Linux and Open Media Vault (OMV) installed.
 
-## License
-MIT
-
-## Purpose
 I created this shell to backup my 32GB USB thumb drive on which OMV and Linux are running.
 It was created with a goal of making the entire backup and restore process as simple as possible.
 There are other solutions for this, but this works well for me so I thought I'd share.
-
-## Included in this repository:
-  1. this README file
-  2. LICENSE file
-  3. createBackup.sh (the shell to do the backup)
 
 ## Behaviour
 The backup process:
