@@ -109,8 +109,8 @@ Setup should take about five minutes.  Here are the steps:
 	Accordingly, if you don't sign as the root user you will need to extend the (default 15 minute) sudo timeout limit to be long enough for the shell to run to completion.
 
 	To do this, issue the command:
-
-	sudo visudo -f /etc/sudoers.d/timeout
+###
+<tab><tab>sudo visudo -f /etc/sudoers.d/timeout
 
 	in the file that opens, add / modify a line to read:
 
@@ -142,15 +142,12 @@ There are two ways to manually run the backup:
    1.1 Either directly or remotely access the OMV machine's command line
 
    1.2 Change the current directory the directory in which the shell file is stored, for example:
-
        cd ~/backupRoutine
 
    1.3 Run the createBackup shell
-
        ./createBackup.sh
 
        (enter your password if prompted)
-
 
 2. via the OMV Web Interface
    This requires that a scheduling task has been setup in OMV as noted below and that you manually run it (also as described below).
