@@ -22,7 +22,7 @@ There are other solutions for this, but this works well for me so I thought I'd 
 The backup process:
 - creates a image file which may be flashed to another like (or larger) USB drive using a flashing tool such as Raspberry Pi Imager
 - optionally compresses the image file to save space
-- allows uninterrupted SSH access and access to OMV drives through out the backup and compress processes
+- allows uninterrupted direct and SSH access as well as access to OMV drives through out the backup and compress processes
 - takes the OMV web interface offline and puts the OS drive in read only mode for the time needed to do the backup
 - optionally deletes the uncompressed backup image file after the compressed backup image file has been created
 - rebooting is not needed before or after the process has run
@@ -36,7 +36,7 @@ Run times on my system:
 
 CPU usage:
 - the backup process used only marginally more CPU than when the system was idle
-- the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time.  Regardless, the OMV Web Interface and OMV managed file access performance remained respectable during the compress process.
+- the compression process used significantly more CPU, with the OVM dashboard reporting over 70% busy much of the time.  Regardless, the OMV Web Interface and OMV managed file access performance remained functional during the compress process.
 
 File sizes:
 - uncompressed backup file: 28.6 GB
@@ -46,11 +46,14 @@ Flashing from the backup:
 - using Raspberry Pi Imager it took about an hour to flash from the backup. This timing was not impacted by the input image file being compressed or not.
 
 ## Prerequisites and setup:
+
+(assuming you have the prerequisites outlined in points 1 and 2 below, step should only take about five minutes)	
+	
 1.  OMV should be installed and configured, this to include at least one OMV drive to which the backup may be saved
 
-2.  Create a directory on one of the OMV managed drives as a target for the backup
+2.  Either direct or remote (SSH) access is required to the system running OMV
 
-3.  Either direct or remote (SSH) access is required to the system running OMV
+3.  Create a directory on one of the OMV managed drives as a target for the backup
 
 4.  Directly or remotely sign onto the OMV machine's command line
     note: if you sign in as root prefixing the commands below with sudo is not required
@@ -94,7 +97,7 @@ Flashing from the backup:
 10. Set your system permissions to allow the shell file to be executed
     sudo +x createBackup.sh
 
-11. Depending on the size of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
+11. Depending on the capacity of your drive to be imaged (and optionally compressed) the overall process may take a good amount of time to complete.
     For more information, please see the 'Testing Results' above.
 	Accordingly, if you don't ssh in using root, then you will need to extend the sudo timeout limit to be long enough for the shell to run to completion.
 	To do this, you may issue the command:
@@ -129,40 +132,40 @@ There are two ways to manually run the backup:
        (enter your password if prompted)
 
 2. via the OMV Web Interface
-   This requires that a scheduling task has been setup in OMV as noted below
-   and that you manually run it as described in point 11 below
+   This requires that a scheduling task has been setup in OMV as noted below and that you manually run it (also as described below).
+   
+Note: if within OMV, System - Notification - Events Process Monitoring and/or Multiple Device (Software RAID) are enabled then several e-mail alters will be generated while the backup is running.   
 
 ## Automatically running the backup
 OMV's scheduling feature can be used to setup automatic periodic backups
+
 To do this:
 1.  Sign on to the OMV Web interface as admin
-2.  Go to System - Scheduled Tasks
-3.  Click on the + sign in the blue circle in the horizontal menu bar to add a new task
-5.  Check Enabled
-6.  Set your desired scheduling;
+2.  Go to System - Scheduled Tasks and click on the + sign in the horizontal menu bar to add a new task
+3.  Check Enabled
+4.  Set your desired scheduling;
     For example mine runs on the first day of each month at 1am
 	with Certain Day; Minute 0; Hour 1; Day of Month 1; Month \*; Day of week \*
-7.  Set the user to root
-8.  Set the command to:
+5.  Set the user to root
+6.  Set the command to:
     (from the root user's perspective the path on your system where the createBackup.sh file is stored)\createBackup.sh
 	for example mine is set to:
 	/home/rob/backupRoutine/createBackup.sh
-9.  if in OMV, System - Notations are setup
-    you may optionally check 'Send command output via email' if you like
-10. Save and apply pending changes
-11. You can test this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar
-    However, if you do your OMV Web connection should almost immediately be lost.
-	Ironically, this is an indication the shell is working as intended as the first thing it does, prior to making backup, is (as mentioned above) to take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup.
-	Having that said, (also as mentioned above) while the backup is running you will still have SSH and OMV file accesses.
+7.  'Send command output via email'	may be optionally checked if within the OMV Web Interface System - Notifications - Settings is enabled	
+8. Save and apply pending changes
+
+You can test this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar.
+However, if you do this your OMV Web connection should almost immediately be disconnected as the first thing the shell does, prior to making backup, is (as mentioned above) take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup.
+Having that said, while the backup is running you will still have direct, SSH and OMV file accesses (also as mentioned above).
 
 ## When the backup is finished
 If you need to restore your OS + OMV drive then having easy access to the either the backup image file or the compressed backup image file will be important.
 Accordingly, it is best to copy at least one of these files to an easy to access location not managed by OMV.
 Optionally, you can flash it to a suitable backup drive (more information directly below)
 
-## Retoring the backup
-Use a tool such as Raspberry Pi Imager to flash the image to another drive of the same capacity or greater
-Of note, with Raspberry Pi Imager the compressed image file does not need to be uncompressed first
+## Restoring from the backup
+Use a tool such as Raspberry Pi Imager to flash the image to another drive of the same capacity or greater.
+Of note, with Raspberry Pi Imager the compressed image file may be used without uncompromising it
 
 If you use Raspberry Pi Imager
     Click on 'Operating System' - 'Use Custom' - and select your compressed (or uncompressed) backup file
