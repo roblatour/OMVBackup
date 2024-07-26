@@ -177,9 +177,10 @@ To do this:
 7. The option 'Send command output via email' may be checked if within the OMV web interface System - Notifications - Settings is enabled	
 8. Save and apply pending changes
 
-You can run this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar.
-However, if you do this your OMV web interface connection should almost immediately be disconnected as the first thing the shell does, prior to making backup, is take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup (as mentioned above).
+You can manually run this by clicking on the task and then clicking on the right arrow run icon in the horizontal menu bar.
+However, if you do this your OMV web interface should almost immediately become unresponsive for new activities as the first thing the shell does, prior to a making backup, is take the OMV web interface offline and put the OS drive in read only mode for the time needed to do the backup (as mentioned above).
 Having that said, while the backup is running you will still have direct, SSH and OMV managed file accesses (also as mentioned above).
+When the backup completes usage of the OMV web interface will return to normal.
 
 ## When the backup is finished
 If you need to restore your OS + OMV drive then having easy access to the either the backup image file or the compressed backup image file will be important.

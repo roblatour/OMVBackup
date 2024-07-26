@@ -35,10 +35,10 @@ REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED=false
 
 # HTTP and HTTPS PORTS
 # By default, the http port used by OMV is 80 and the https port used is 443
-# If you are unsure which ports your system uses you can confirm them with the following command from the command line:
+# If you are unsure which ports your system uses they can be confirmed with the following terminal command:
 #   grep 'listen' /etc/nginx/sites-available/default | grep 'default' | grep -v '\['
-# the http port number should be identified where it says (for example and by default) "listen 80 default_server;" (or "#  listen 80 default_server;" if http is not used)
-# the https port number should be identified where it says (for example and by default) "listen 443 ssl default_server;" or (or "#  listen 443 ssl default_server;" if https is not used)
+# the http port should be identified where it says (for example and by default) "listen 80 default_server;" or if http is not used "#  listen 80 default_server;"
+# the https port should be identified where it says (for example and by default) "listen 443 ssl default_server;" or if https is not used "#  listen 443 ssl default_server;"
 # regardless of if the port is used or not, its value should be set directly below
 HTTP_PORT=80
 HTTPS_PORT=443
@@ -48,7 +48,7 @@ HTTPS_PORT=443
 DATE_TIME=$(date +"_%Y-%m-%d_%H-%M-%S")
 
 # OS_DRIVE
-# Get the device that holds the root filesystem (please do not change this code)
+# Get the device that holds the root file system (please do not change this code)
 OS_DRIVE=/dev/$(lsblk -no pkname $(mount | grep "on / " | cut -d' ' -f1))
 
 # OK lets go!
