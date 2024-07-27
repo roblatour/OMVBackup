@@ -2,7 +2,7 @@
 # Copyright Rob Latour, 2024
 # License MIT
 
-# Updates are required for BACKUP_DRIVE_ID and BACKUP_DRIVE_NAME 
+# Updates are required for BACKUP_DRIVE_ID and BACKUP_DRIVE_NAME
 # BACKUP_DRIVE_ID and BACKUP_DRIVE_NAME can be found via the OMV Web Interface at Diagnostics - Services - SMB/CIFS
 
 # BACKUP_DRIVE_ID
