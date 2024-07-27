@@ -1,7 +1,7 @@
 # OMVBackup
 
 ## Purpose
-Make it easy to back up and restore Linux and Open Media Vault (OMV) installed on a (16GB / 32GB / 64GB) USB drive.
+Make it easy to back up and restore Linux and Open Media Vault (OMV) installed on a (32GB / 64GB) USB drive.
 
 ## Behaviour
 The backup process:
@@ -30,7 +30,7 @@ CPU usage:
 Flashing from the backup:
 - using Raspberry Pi Imager it took about an hour to flash from the backed-up image. This timing was not notably impacted whether the image file was compressed or not.
 
-A Raspberry Pi 5 (8GB) with the same brand of USB Flash drive may be assumed to have the run times, file sizes, and flash times above doubled for a 64 GB drive and halved for a 16 GB drive.
+A Raspberry Pi 5 (8GB) with the same brand of USB Flash drive may be assumed to have the run times, file sizes, and flash times of about doubled for a 64 GB drive.
 
 ## Prerequisites:
 	
