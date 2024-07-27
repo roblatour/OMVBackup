@@ -2,13 +2,16 @@
 # Copyright Rob Latour, 2024
 # License MIT
 
+# Updates are required for BACKUP_DRIVE_ID and BACKUP_DRIVE_NAME 
+# BACKUP_DRIVE_ID and BACKUP_DRIVE_NAME can be found via the OMV Web Interface at Diagnostics - Services - SMB/CIFS
+
 # BACKUP_DRIVE_ID
-#  Use the following command to find the BACKUP_DRIVE_ID:
-#    df -h
+#  Alternatively, the following command may be used to find the BACKUP_DRIVE_ID:
+#   df -h
 BACKUP_DRIVE_ID="/srv/dev-disk-by-uuid-fd45dad9-11a5-48a6-aad7-a71405408632"
 
 # BACKUP_DRIVE_NAME
-#  Use the following two commands to find the BACKUP_DRIVE_NAME:
+#  Alternatively, the following two commands may be used to find the BACKUP_DRIVE_NAME:
 #   cd BACKUP_DRIVE_ID  # for example: cd /srv/dev-disk-by-uuid-fd45dad9-11a5-48a6-aad7-a71405408632
 #   ls
 BACKUP_DRIVE_NAME="BasementSSD"
@@ -34,7 +37,7 @@ COMPRESSION_LEVEL=9
 REMOVE_UNCOMPRESSED_IMAGE_WHEN_COMPRESSED_IMAGE_HAS_BEEN_CREATED=false
 
 # HTTP and HTTPS PORTS
-# By default, the http port used by OMV is 80 and the https port used is 443
+# By default, the http port used by OMV is 80 and the https port is 443
 # If you are unsure which ports your system uses they can be confirmed with the following terminal command:
 #   grep 'listen' /etc/nginx/sites-available/default | grep 'default' | grep -v '\['
 # the http port should be identified where it says (for example and by default) "listen 80 default_server;" or if http is not used "#  listen 80 default_server;"
