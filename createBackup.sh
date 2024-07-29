@@ -73,6 +73,9 @@ else
   exit 2
 fi
 
+echo "Remove unneeded files to reduce the compressed backup's file size"
+sudo apt clean
+
 echo "Place the OS drive in read only mode"
 sudo blockdev -v --setro /dev/sda
 
