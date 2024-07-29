@@ -73,7 +73,7 @@ else
   exit 2
 fi
 
-echo "Remove unneeded files to reduce the compressed backup's file size"
+echo "Remove unneeded files to reduce the compressed backup file's size"
 sudo apt clean
 
 echo "Place the OS drive in read only mode"
