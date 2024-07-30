@@ -82,7 +82,7 @@ sudo blockdev -v --setro /dev/sda
 echo "Taking Open Media Vault's web interface offline"
 sudo iptables -A INPUT -p tcp --dport ${HTTP_PORT} -j DROP
 sudo iptables -A INPUT -p tcp --dport ${HTTPS_PORT} -j DROP
-echo "access via ports" ${HTTP_PORT} "and" ${HTTPS_PORT} "removed."
+echo "OMV Web interface access via ports" ${HTTP_PORT} "and" ${HTTPS_PORT} "removed."
 
 echo "Creating backup file"
 sudo dd bs=4M if=${OS_DRIVE} of="${BACKUP_DRIVE_ID}/${BACKUP_DRIVE_NAME}/${BACKUP_DIRECTORY}/${BACKUP_FILENAME}${DATE_TIME}.img" status=progress oflag=sync
@@ -95,7 +95,7 @@ sudo blockdev -v --setrw /dev/sda
 echo "Placing Open Media Vault's web interface back online"
 sudo iptables -D INPUT -p tcp --dport ${HTTP_PORT} -j DROP
 sudo iptables -D INPUT -p tcp --dport ${HTTPS_PORT} -j DROP
-echo "access via ports" ${HTTP_PORT} "and" ${HTTPS_PORT} "restored."
+echo "OMV Web interface access via ports" ${HTTP_PORT} "and" ${HTTPS_PORT} "restored."
 
 echo "The Open Media Vault web interface is back online after $((($(date +%s) - $(date +%s --date="$(ps -o lstart= -p $$)")) / 60)) minutes and $((($(date +%s) - $(date +%s --date="$(ps -o lstart= -p $$)")) % 60)) seconds"
 
