@@ -77,7 +77,7 @@ echo "Remove unneeded files to reduce the compressed backup file's size"
 sudo apt clean
 
 echo "Place the OS drive in read only mode"
-sudo blockdev -v --setro /dev/sda
+sudo blockdev -v --setro ${OS_DRIVE}
 
 echo "Taking Open Media Vault's web interface offline"
 sudo iptables -A INPUT -p tcp --dport ${HTTP_PORT} -j DROP
@@ -90,7 +90,7 @@ sudo dd bs=4M if=${OS_DRIVE} of="${BACKUP_DRIVE_ID}/${BACKUP_DRIVE_NAME}/${BACKU
 echo "... backup file created"
 
 echo "Restoring the OS drive to read write mode"
-sudo blockdev -v --setrw /dev/sda
+sudo blockdev -v --setrw ${OS_DRIVE}
 
 echo "Placing Open Media Vault's web interface back online"
 sudo iptables -D INPUT -p tcp --dport ${HTTP_PORT} -j DROP
